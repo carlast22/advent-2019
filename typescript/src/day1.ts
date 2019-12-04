@@ -3,17 +3,22 @@ import * as rd from 'readline'
 
 const reader = rd.createInterface(fs.createReadStream('typescript/inputs/day1.txt'))
 
-export function bestFuel(mass: number) {
-    return Math.floor(mass / 3) - 2
+function add(accumulator: number, a: number) {
+    return accumulator + bestFuel(a)
 }
 
-function add(accumulator: number, a: number) {
- return accumulator + bestFuel(a)
+function fuel(number: number) {
+    return Math.floor(number / 3) - 2
+}
+
+export function bestFuel(mass: number): number {
+    if (mass <= 6) return 0
+    let result: number = fuel(mass)
+    return result + bestFuel(result) 
 }
 
 export function calculateTotalFuel(data: Array<number>) {
     const total = data.reduce(add, 0)
-    console.log(`Total fuel required is ${total}`)
     return total
 }
 
@@ -24,7 +29,8 @@ reader.on("line", (l: string) => {
 })
 
 reader.on('close', () => {
-    calculateTotalFuel(data)
+    const total = calculateTotalFuel(data)
+    console.log(`Total fuel required is ${total}`)
 })
 
 
