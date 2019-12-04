@@ -1,11 +1,6 @@
 import fs from 'fs'
-import * as rd from 'readline'
 
-const reader = rd.createInterface(fs.createReadStream('typescript/inputs/day1.txt'))
-
-function add(accumulator: number, a: number) {
-    return accumulator + bestFuel(a)
-}
+const currentInput = fs.readFileSync('typescript/inputs/day1.txt', 'utf8')
 
 function fuel(number: number) {
     return Math.floor(number / 3) - 2
@@ -17,20 +12,17 @@ export function bestFuel(mass: number): number {
     return result + bestFuel(result) 
 }
 
-export function calculateTotalFuel(data: Array<number>) {
-    const total = data.reduce(add, 0)
-    return total
+export function calculateTotalFuel(input: string): number {
+    let total: number = 0;
+    const data: string[] = input.split('\n');
+
+    data.map(n => {
+        const number = +n
+        total += bestFuel(number);
+    })
+
+    return total;
 }
 
-const data: Array<number> = [];
-reader.on("line", (l: string) => {
-    const number = +l
-    data.push(number)
-})
-
-reader.on('close', () => {
-    const total = calculateTotalFuel(data)
-    console.log(`Total fuel required is ${total}`)
-})
-
-
+const result = calculateTotalFuel(currentInput);
+console.log(`This is the total fuel required: ${result}`)
