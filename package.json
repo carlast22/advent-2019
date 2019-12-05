@@ -4,7 +4,12 @@
   "description": "My solutions for Advent of Code 2019 (https://adventofcode.com)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "execute": "ts-node"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "repository": {
     "type": "git",
@@ -16,15 +21,12 @@
     "url": "https://github.com/carlast22/advent-2019/issues"
   },
   "homepage": "https://github.com/carlast22/advent-2019#readme",
-  "dependencies": {
-    "@types/node": "^12.12.14",
-    "file-system": "^2.2.2",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.2"
-  },
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "jest": "^24.9.0",
-    "ts-jest": "^24.2.0"
+    "ts-jest": "^24.2.0",
+    "@types/node": "^12.12.14",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
   }
 }
